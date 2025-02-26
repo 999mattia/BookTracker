@@ -5,6 +5,9 @@ using System.Text;
 using BookTracker.Infrastructure.Database;
 using BookTracker.Infrastructure.Contracts.Database;
 using Microsoft.EntityFrameworkCore;
+using BookTracker.Infrastructure.Seeding;
+using BookTracker.Business.Extensions;
+using BookTracker.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +75,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 builder.Services.AddScoped<IDataContext, DataContext>();
 
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -80,6 +86,12 @@ if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
+
+	using (var scope = app.Services.CreateScope())
+	{
+		var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+		Seeder.Seed(context);
+	}
 }
 
 app.UseHttpsRedirection();

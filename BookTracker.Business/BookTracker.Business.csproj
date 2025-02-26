@@ -1,9 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BookTracker.Core\BookTracker.Core.csproj" />
+		<ProjectReference Include="..\BookTracker.Business.Contracts\BookTracker.Business.Contracts.csproj" />
+		<ProjectReference Include="..\BookTracker.Infrastructure\BookTracker.Infrastructure.csproj" />
+		<ProjectReference Include="..\BookTracker.Infrastructure.Contracts\BookTracker.Infrastructure.Contracts.csproj" />
+	</ItemGroup>
 
 </Project>

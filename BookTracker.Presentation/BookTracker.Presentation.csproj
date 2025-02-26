@@ -13,4 +13,9 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.1" />
   </ItemGroup>
 
+   <ItemGroup>
+    <ProjectReference Include="..\BookTracker.Infrastructure\BookTracker.Infrastructure.csproj" />
+    <ProjectReference Include="..\BookTracker.Infrastructure.Contracts\BookTracker.Infrastructure.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

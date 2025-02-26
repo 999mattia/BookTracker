@@ -2,6 +2,9 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using BookTracker.Infrastructure.Database;
+using BookTracker.Infrastructure.Contracts.Database;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,6 +65,12 @@ builder.Services.AddCors(options =>
 			  .AllowAnyMethod();
 	});
 });
+
+var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+builder.Services.AddDbContext<DataContext>(options =>
+	options.UseNpgsql(connectionString));
+
+builder.Services.AddScoped<IDataContext, DataContext>();
 
 builder.Services.AddControllers();
 

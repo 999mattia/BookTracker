@@ -8,7 +8,7 @@ public interface IBookRepository
 
 	Book GetBookById(Guid bookId);
 
-	Book GetBookByTitle(string bookTitle);
+	IList<Book> GetBooksByTitle(string bookTitle);
 
 	void SaveChanges();
 }

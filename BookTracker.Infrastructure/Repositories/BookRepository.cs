@@ -23,9 +23,11 @@ public class BookRepository : IBookRepository
 		return dataContext.Books.FirstOrDefault(b => b.Id == bookId);
 	}
 
-	public Book GetBookByTitle(string bookTitle)
+	public IList<Book> GetBooksByTitle(string bookTitle)
 	{
-		return dataContext.Books.FirstOrDefault(b => b.Title == bookTitle);
+		return dataContext.Books
+			.Where(b => b.Title.ToLower().Contains(bookTitle.ToLower()))
+			.ToList();
 	}
 
 	public void SaveChanges()

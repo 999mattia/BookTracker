@@ -23,8 +23,8 @@ public class BookService : IBookService
 		return bookRepository.GetBookById(bookId);
 	}
 
-	public Book GetBookByTitle(string bookTitle)
+	public IList<Book> GetBooksByTitle(string bookTitle)
 	{
-		return bookRepository.GetBookByTitle(bookTitle);
+		return bookRepository.GetBooksByTitle(bookTitle);
 	}
 }

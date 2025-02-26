@@ -7,5 +7,5 @@ public interface IBookService
 
 	Book GetBookById(Guid bookId);
 
-	Book GetBookByTitle(string bookTitle);
+	IList<Book> GetBooksByTitle(string bookTitle);
 }

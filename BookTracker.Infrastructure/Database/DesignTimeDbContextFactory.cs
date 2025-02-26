@@ -24,5 +24,4 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DataContex
 
 		return new DataContext(optionsBuilder.Options);
 	}
-
 }

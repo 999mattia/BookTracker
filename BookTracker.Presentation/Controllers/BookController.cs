@@ -47,4 +47,12 @@ public class BookController : ControllerBase
 
 		return Ok(bookService.AddBook(mappedBookToAdd));
 	}
+
+	[HttpPut("{id:guid}")]
+	[Authorize(Roles = "admin")]
+	public IActionResult UpdateBook(BookDTO bookToUpdate, Guid id)
+	{
+		var mappedBookToUpdate = mapper.Map<BookDTO, Book>(bookToUpdate);
+		return Ok(bookService.UpdateBook(id, mappedBookToUpdate));
+	}
 }

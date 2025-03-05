@@ -10,4 +10,6 @@ public interface IBookService
 	IEnumerable<Book> GetBooksByTitle(string bookTitle);
 
 	Book AddBook(Book bookToAdd);
+
+	Book UpdateBook(Guid bookToUpdateId, Book bookToUpdate);
 }

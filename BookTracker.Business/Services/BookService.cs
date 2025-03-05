@@ -51,4 +51,22 @@ public class BookService : IBookService
 
 		return bookToAdd;
 	}
+
+	public Book UpdateBook(Guid bookToUpdateId, Book bookToUpdate)
+	{
+		var existingBook = bookRepository.GetBookById(bookToUpdateId);
+
+		if (existingBook == null)
+		{
+			throw new NotFoundException($"Book with ID '{bookToUpdateId}' not found");
+		}
+
+		existingBook.Title = bookToUpdate.Title;
+		existingBook.Author = bookToUpdate.Author;
+		existingBook.Description = bookToUpdate.Description;
+
+		bookRepository.SaveChanges();
+
+		return existingBook;
+	}
 }

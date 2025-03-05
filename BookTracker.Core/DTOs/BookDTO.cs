@@ -15,5 +15,5 @@ public class BookDTO
 	public string Author { get; set; }
 
 	[MaxLength(1000)]
-	public string Description { get; set; }
+	public string? Description { get; set; }
 }

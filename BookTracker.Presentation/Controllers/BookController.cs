@@ -1,4 +1,7 @@
+using AutoMapper;
 using BookTracker.Business.Contracts.Services;
+using BookTracker.Core.DTOs;
+using BookTracker.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +11,12 @@ namespace BookTracker.Presentation.Controllers;
 [Route("books")]
 public class BookController : ControllerBase
 {
+	private IMapper mapper { get; }
 	private IBookService bookService { get; }
 
-	public BookController(IBookService bookService)
+	public BookController(IMapper mapper, IBookService bookService)
 	{
+		this.mapper = mapper;
 		this.bookService = bookService;
 	}
 
@@ -32,5 +37,14 @@ public class BookController : ControllerBase
 	public IActionResult GetBookById(Guid id)
 	{
 		return Ok(bookService.GetBookById(id));
+	}
+
+	[HttpPost]
+	[Authorize(Roles = "admin")]
+	public IActionResult AddBook(BookDTO bookToAdd)
+	{
+		var mappedBookToAdd = mapper.Map<BookDTO, Book>(bookToAdd);
+
+		return Ok(bookService.AddBook(mappedBookToAdd));
 	}
 }

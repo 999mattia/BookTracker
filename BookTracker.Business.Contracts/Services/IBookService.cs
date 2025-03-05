@@ -8,4 +8,6 @@ public interface IBookService
 	Book GetBookById(Guid bookId);
 
 	IList<Book> GetBooksByTitle(string bookTitle);
+
+	Book AddBook(Book bookToAdd);
 }

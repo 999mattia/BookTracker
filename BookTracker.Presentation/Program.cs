@@ -78,6 +78,8 @@ builder.Services.AddDataContext();
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddControllers();
 
 var app = builder.Build();

@@ -42,4 +42,13 @@ public class BookService : IBookService
 
 		return bookRepository.GetBooksByTitle(bookTitle);
 	}
+
+	public Book AddBook(Book bookToAdd)
+	{
+		var addedBook = bookRepository.AddBook(bookToAdd);
+
+		bookRepository.SaveChanges();
+
+		return addedBook;
+	}
 }

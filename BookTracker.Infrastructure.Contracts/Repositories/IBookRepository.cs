@@ -10,5 +10,7 @@ public interface IBookRepository
 
 	IList<Book> GetBooksByTitle(string bookTitle);
 
+	Book AddBook(Book bookToAdd);
+
 	void SaveChanges();
 }

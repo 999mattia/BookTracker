@@ -45,10 +45,10 @@ public class BookService : IBookService
 
 	public Book AddBook(Book bookToAdd)
 	{
-		var addedBook = bookRepository.AddBook(bookToAdd);
+		bookRepository.AddBook(bookToAdd);
 
 		bookRepository.SaveChanges();
 
-		return addedBook;
+		return bookToAdd;
 	}
 }

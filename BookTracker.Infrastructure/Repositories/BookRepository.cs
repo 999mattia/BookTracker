@@ -30,11 +30,9 @@ public class BookRepository : IBookRepository
 			.ToList();
 	}
 
-	public Book AddBook(Book bookToAdd)
+	public void AddBook(Book bookToAdd)
 	{
 		dataContext.Add(bookToAdd);
-
-		return bookToAdd;
 	}
 
 	public void SaveChanges()

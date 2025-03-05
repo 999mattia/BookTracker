@@ -15,11 +15,9 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\BookTracker.Infrastructure\BookTracker.Infrastructure.csproj" />
-		<ProjectReference
-			Include="..\BookTracker.Infrastructure.Contracts\BookTracker.Infrastructure.Contracts.csproj" />
+		<ProjectReference Include="..\BookTracker.Infrastructure.Contracts\BookTracker.Infrastructure.Contracts.csproj" />
 		<ProjectReference Include="..\BookTracker.Business\BookTracker.Business.csproj" />
-		<ProjectReference
-			Include="..\BookTracker.Business.Contracts\BookTracker.Business.Contracts.csproj" />
+		<ProjectReference Include="..\BookTracker.Business.Contracts\BookTracker.Business.Contracts.csproj" />
 	</ItemGroup>
 
 </Project>

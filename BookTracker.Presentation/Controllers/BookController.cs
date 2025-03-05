@@ -21,14 +21,7 @@ public class BookController : ControllerBase
 	{
 		if (!string.IsNullOrEmpty(title))
 		{
-			var books = bookService.GetBooksByTitle(title);
-
-			if (books == null || !books.Any())
-			{
-				return NotFound($"No books found with title '{title}'.");
-			}
-
-			return Ok(books);
+			return Ok(bookService.GetBooksByTitle(title));
 		}
 
 		return Ok(bookService.GetAllBooks());
@@ -38,13 +31,6 @@ public class BookController : ControllerBase
 	[Authorize(Roles = "user,admin")]
 	public IActionResult GetBookById(Guid id)
 	{
-		var book = bookService.GetBookById(id);
-
-		if (book == null)
-		{
-			return NotFound($"Book with ID {id} not found.");
-		}
-
-		return Ok(book);
+		return Ok(bookService.GetBookById(id));
 	}
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BookTracker.Infrastructure.Seeding;
 using BookTracker.Business.Extensions;
 using BookTracker.Infrastructure.Extensions;
+using BookTracker.Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,6 +97,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

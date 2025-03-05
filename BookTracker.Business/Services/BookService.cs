@@ -1,4 +1,5 @@
 using BookTracker.Business.Contracts.Services;
+using BookTracker.Core.Exceptions;
 using BookTracker.Core.Models;
 using BookTracker.Infrastructure.Contracts.Repositories;
 
@@ -20,11 +21,25 @@ public class BookService : IBookService
 
 	public Book GetBookById(Guid bookId)
 	{
-		return bookRepository.GetBookById(bookId);
+		var book = bookRepository.GetBookById(bookId);
+
+		if (book == null)
+		{
+			throw new NotFoundException($"Book with ID '{bookId}' not found");
+		}
+
+		return book;
 	}
 
 	public IList<Book> GetBooksByTitle(string bookTitle)
 	{
+		var books = bookRepository.GetBooksByTitle(bookTitle);
+
+		if (books == null || !books.Any())
+		{
+			throw new NotFoundException($"No books found with title '{bookTitle}'");
+		}
+
 		return bookRepository.GetBooksByTitle(bookTitle);
 	}
 }

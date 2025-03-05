@@ -8,10 +8,12 @@ public class BookDTO
 
 	[Required]
 	[MaxLength(100)]
+	[MinLength(1)]
 	public string Title { get; set; }
 
 	[Required]
 	[MaxLength(100)]
+	[MinLength(1)]
 	public string Author { get; set; }
 
 	[MaxLength(1000)]

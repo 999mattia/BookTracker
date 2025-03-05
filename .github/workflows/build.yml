@@ -12,13 +12,39 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+          
       - name: Restore dependencies
         run: dotnet restore
+        
       - name: Build
         run: dotnet build --no-restore
+        
+  frontend-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v3
 
+      - name: Setup Node.js $
+        uses: actions/setup-node@v3
+        with:
+          node-version: $
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+          working-directory: ./BookTracker.Client
 
+      - name: Install dependencies
+        working-directory: ./BookTracker.Client
+        run: npm ci
+
+      - name: Build
+        working-directory: ./BookTracker.Client
+        run: npm run build

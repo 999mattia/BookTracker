@@ -26,9 +26,6 @@ jobs:
         
   frontend-build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v3
@@ -36,7 +33,7 @@ jobs:
       - name: Setup Node.js $
         uses: actions/setup-node@v3
         with:
-          node-version: $
+          node-version: 20
           cache: 'npm'
           cache-dependency-path: package-lock.json
           working-directory: ./BookTracker.Client

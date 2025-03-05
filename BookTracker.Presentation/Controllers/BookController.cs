@@ -3,6 +3,7 @@ using BookTracker.Business.Contracts.Services;
 using BookTracker.Core.DTOs;
 using BookTracker.Core.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookTracker.Presentation.Controllers;
@@ -54,5 +55,14 @@ public class BookController : ControllerBase
 	{
 		var mappedBookToUpdate = mapper.Map<BookDTO, Book>(bookToUpdate);
 		return Ok(bookService.UpdateBook(id, mappedBookToUpdate));
+	}
+
+	[HttpDelete("{id:guid}")]
+	[Authorize(Roles = "admin")]
+	public IActionResult DeleteBook(Guid id)
+	{
+		bookService.DeleteBook(id);
+
+		return Ok();
 	}
 }

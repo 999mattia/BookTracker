@@ -52,13 +52,13 @@ public class BookService : IBookService
 		return bookToAdd;
 	}
 
-	public Book UpdateBook(Guid bookToUpdateId, Book bookToUpdate)
+	public Book UpdateBook(Guid bookId, Book bookToUpdate)
 	{
-		var existingBook = bookRepository.GetBookById(bookToUpdateId);
+		var existingBook = bookRepository.GetBookById(bookId);
 
 		if (existingBook == null)
 		{
-			throw new NotFoundException($"Book with ID '{bookToUpdateId}' not found");
+			throw new NotFoundException($"Book with ID '{bookId}' not found");
 		}
 
 		existingBook.Title = bookToUpdate.Title;
@@ -68,5 +68,19 @@ public class BookService : IBookService
 		bookRepository.SaveChanges();
 
 		return existingBook;
+	}
+
+	public void DeleteBook(Guid bookId)
+	{
+		var bookToDelete = bookRepository.GetBookById(bookId);
+
+		if (bookToDelete == null)
+		{
+			throw new NotFoundException($"Book with ID '{bookId}' not found");
+		}
+
+		bookRepository.DeleteBook(bookToDelete);
+
+		bookRepository.SaveChanges();
 	}
 }

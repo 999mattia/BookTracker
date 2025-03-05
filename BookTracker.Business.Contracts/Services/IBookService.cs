@@ -11,5 +11,7 @@ public interface IBookService
 
 	Book AddBook(Book bookToAdd);
 
-	Book UpdateBook(Guid bookToUpdateId, Book bookToUpdate);
+	Book UpdateBook(Guid bookId, Book bookToUpdate);
+
+	void DeleteBook(Guid bookId);
 }

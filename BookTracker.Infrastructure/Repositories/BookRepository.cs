@@ -31,7 +31,12 @@ public class BookRepository : IBookRepository
 
 	public void AddBook(Book bookToAdd)
 	{
-		dataContext.Add(bookToAdd);
+		dataContext.Books.Add(bookToAdd);
+	}
+
+	public void DeleteBook(Book bookToDelete)
+	{
+		dataContext.Books.Remove(bookToDelete);
 	}
 
 	public void SaveChanges()

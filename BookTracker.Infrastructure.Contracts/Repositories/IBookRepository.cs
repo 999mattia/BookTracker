@@ -12,5 +12,7 @@ public interface IBookRepository
 
 	void AddBook(Book bookToAdd);
 
+	void DeleteBook(Book bookToDelete);
+
 	void SaveChanges();
 }

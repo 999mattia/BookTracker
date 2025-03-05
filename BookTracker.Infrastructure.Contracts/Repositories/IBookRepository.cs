@@ -4,11 +4,11 @@ namespace BookTracker.Infrastructure.Contracts.Repositories;
 
 public interface IBookRepository
 {
-	IList<Book> GetAllBooks();
+	IEnumerable<Book> GetAllBooks();
 
 	Book GetBookById(Guid bookId);
 
-	IList<Book> GetBooksByTitle(string bookTitle);
+	IEnumerable<Book> GetBooksByTitle(string bookTitle);
 
 	void AddBook(Book bookToAdd);
 

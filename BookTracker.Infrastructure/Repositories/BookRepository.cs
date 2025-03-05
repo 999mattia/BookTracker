@@ -13,9 +13,9 @@ public class BookRepository : IBookRepository
 		this.dataContext = dataContext;
 	}
 
-	public IList<Book> GetAllBooks()
+	public IEnumerable<Book> GetAllBooks()
 	{
-		return dataContext.Books.ToList();
+		return dataContext.Books;
 	}
 
 	public Book GetBookById(Guid bookId)
@@ -23,11 +23,10 @@ public class BookRepository : IBookRepository
 		return dataContext.Books.FirstOrDefault(b => b.Id == bookId);
 	}
 
-	public IList<Book> GetBooksByTitle(string bookTitle)
+	public IEnumerable<Book> GetBooksByTitle(string bookTitle)
 	{
 		return dataContext.Books
-			.Where(b => b.Title.ToLower().Contains(bookTitle.ToLower()))
-			.ToList();
+			.Where(b => b.Title.ToLower().Contains(bookTitle.ToLower()));
 	}
 
 	public void AddBook(Book bookToAdd)

@@ -14,7 +14,7 @@ public class BookService : IBookService
 		this.bookRepository = bookRepository;
 	}
 
-	public IList<Book> GetAllBooks()
+	public IEnumerable<Book> GetAllBooks()
 	{
 		return bookRepository.GetAllBooks();
 	}
@@ -31,7 +31,7 @@ public class BookService : IBookService
 		return book;
 	}
 
-	public IList<Book> GetBooksByTitle(string bookTitle)
+	public IEnumerable<Book> GetBooksByTitle(string bookTitle)
 	{
 		var books = bookRepository.GetBooksByTitle(bookTitle);
 

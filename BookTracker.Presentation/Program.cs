@@ -73,8 +73,7 @@ var connectionString = builder.Configuration.GetConnectionString("DatabaseConnec
 builder.Services.AddDbContext<DataContext>(options =>
 	options.UseNpgsql(connectionString));
 
-builder.Services.AddScoped<IDataContext, DataContext>();
-
+builder.Services.AddDataContext();
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 

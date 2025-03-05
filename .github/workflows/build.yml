@@ -24,22 +24,3 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
         
-  frontend-build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout the source code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js $
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        working-directory: ./BookTracker.Client
-        run: npm ci
-
-      - name: Build
-        working-directory: ./BookTracker.Client
-        run: npm run build
